@@ -83,7 +83,7 @@ apply:
         "remote-vtep-address/[0]/data: _floodVtepList",
         "remote-vtep-mode: _mode",
         "remote-vtep-interface-name/[0]/data: vni?|0",
-        "vxlan-dynamic-information/[0]/vxlan-format/[*]/vn-id/[0]/data: _vniList",
+        "vxlan-dynamic-information/[0]/vxlan-format/[*]/vn-id/[0]/data: _vniList?|[]",
         "vxlan-dynamic-information/[0]/vxlan-format/[*]/multicast-address/[0]/data: replicationType",
         "_entryType: _entryType?|remote",
         ]'
@@ -92,6 +92,9 @@ apply:
     copy: junos-qfx
 
   junos-es:
+    copy: junos-qfx
+
+  junos-qfx10k:
     copy: junos-qfx
 
   nxos:
