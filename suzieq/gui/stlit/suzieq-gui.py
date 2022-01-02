@@ -26,18 +26,18 @@ def set_vertical_radio():
              unsafe_allow_html=True)
 
 
-def hide_st_index():
-    '''CSS to hide table index rendered via st.table'''
-    st.markdown("""
-        <style>
-        .table td:nth-child(1) {
-            display: none;
-        }
-        .table th:nth-child(1) {
-            display: none;
-        }
-        </style>
-        """, unsafe_allow_html=True)
+def display_help_icon(url: str):
+    '''Display Help Icon with click to take you to appropriate page'''
+
+    help_img = f'{get_image_dir()}/helps.png'
+    with open(help_img, "rb") as f:
+        img = base64.b64encode(f.read()).decode()
+
+    st.sidebar.markdown(
+        f'<a target="_help" href="{url}"><img class="help-img" '
+        f'src="data:image/png;base64,'
+        f'{img}"></a>',
+        unsafe_allow_html=True)
 
 
 def display_title(page: str):
@@ -114,7 +114,6 @@ def display_title(page: str):
             page = srch_holder.radio('Page', sel_menulist, key='sq_page',
                                      on_change=main_sync_state)
             page = state.sq_page
-        set_vertical_radio()
     return page, search_str
 
 
